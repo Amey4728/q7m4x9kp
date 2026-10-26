@@ -4,7 +4,7 @@ A web app for a GB energy supplier's day-ahead trading desk. It shows **which wi
 when each January 2026 purchase decision had to be made**, and **how accurate those forecasts were**,
 so the desk can size how much extra power to buy with the error in mind.
 
-**Live app:** _LIVE_URL_ · **Video walkthrough:** _VIDEO_URL_
+**Live app:** https://q7m4x9kp.vercel.app · **Video walkthrough:** _VIDEO_URL_
 
 ![Decision view](docs/screenshot-decision.png)
 
