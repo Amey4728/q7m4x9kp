@@ -1,0 +1,1837 @@
+{
+  "components": {
+    "schemas": {
+      "Accuracy": {
+        "properties": {
+          "band_coverage": {
+            "$ref": "#/components/schemas/BandCoverage"
+          },
+          "by_horizon": {
+            "items": {
+              "$ref": "#/components/schemas/HorizonRow"
+            },
+            "title": "By Horizon",
+            "type": "array"
+          },
+          "by_hour": {
+            "items": {
+              "$ref": "#/components/schemas/HourRow"
+            },
+            "title": "By Hour",
+            "type": "array"
+          },
+          "by_level": {
+            "items": {
+              "$ref": "#/components/schemas/LevelRow"
+            },
+            "title": "By Level",
+            "type": "array"
+          },
+          "comparison": {
+            "$ref": "#/components/schemas/Comparison"
+          },
+          "cutoff": {
+            "title": "Cutoff",
+            "type": "string"
+          },
+          "daily": {
+            "items": {
+              "$ref": "#/components/schemas/DailyRow"
+            },
+            "title": "Daily",
+            "type": "array"
+          },
+          "heatmap": {
+            "items": {
+              "$ref": "#/components/schemas/HeatmapCell"
+            },
+            "title": "Heatmap",
+            "type": "array"
+          },
+          "histogram": {
+            "items": {
+              "$ref": "#/components/schemas/HistogramBin"
+            },
+            "title": "Histogram",
+            "type": "array"
+          },
+          "insights": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Insights",
+            "type": "array"
+          },
+          "raw": {
+            "$ref": "#/components/schemas/Summary"
+          },
+          "significance": {
+            "$ref": "#/components/schemas/Significance"
+          }
+        },
+        "required": [
+          "cutoff",
+          "raw",
+          "comparison",
+          "significance",
+          "band_coverage",
+          "by_horizon",
+          "by_hour",
+          "by_level",
+          "histogram",
+          "daily",
+          "heatmap",
+          "insights"
+        ],
+        "title": "Accuracy",
+        "type": "object"
+      },
+      "ActualPoint": {
+        "properties": {
+          "actual": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Actual"
+          },
+          "time": {
+            "title": "Time",
+            "type": "string"
+          }
+        },
+        "required": [
+          "time",
+          "actual"
+        ],
+        "title": "ActualPoint",
+        "type": "object"
+      },
+      "BandCoverage": {
+        "properties": {
+          "above_p90_pct": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Above P90 Pct"
+          },
+          "below_p10_pct": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Below P10 Pct"
+          },
+          "inside_pct": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Inside Pct"
+          },
+          "n": {
+            "title": "N",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "n"
+        ],
+        "title": "BandCoverage",
+        "type": "object"
+      },
+      "Comparison": {
+        "properties": {
+          "corrected": {
+            "$ref": "#/components/schemas/Summary"
+          },
+          "days": {
+            "title": "Days",
+            "type": "integer"
+          },
+          "raw": {
+            "$ref": "#/components/schemas/Summary"
+          }
+        },
+        "required": [
+          "days",
+          "raw",
+          "corrected"
+        ],
+        "title": "Comparison",
+        "type": "object"
+      },
+      "DailyRow": {
+        "properties": {
+          "actual_mwh": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Actual Mwh"
+          },
+          "day": {
+            "title": "Day",
+            "type": "string"
+          },
+          "error_mwh": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Error Mwh"
+          },
+          "forecast_mwh": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Forecast Mwh"
+          }
+        },
+        "required": [
+          "day",
+          "forecast_mwh",
+          "actual_mwh",
+          "error_mwh"
+        ],
+        "title": "DailyRow",
+        "type": "object"
+      },
+      "Decision": {
+        "properties": {
+          "actuals_halfhourly": {
+            "items": {
+              "$ref": "#/components/schemas/ActualPoint"
+            },
+            "title": "Actuals Halfhourly",
+            "type": "array"
+          },
+          "cutoff": {
+            "title": "Cutoff",
+            "type": "string"
+          },
+          "decision_day": {
+            "title": "Decision Day",
+            "type": "string"
+          },
+          "delivery_day": {
+            "title": "Delivery Day",
+            "type": "string"
+          },
+          "has_history": {
+            "title": "Has History",
+            "type": "boolean"
+          },
+          "kpis": {
+            "$ref": "#/components/schemas/DecisionKpis"
+          },
+          "publish_times": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Publish Times",
+            "type": "array"
+          },
+          "series": {
+            "items": {
+              "$ref": "#/components/schemas/DecisionPoint"
+            },
+            "title": "Series",
+            "type": "array"
+          }
+        },
+        "required": [
+          "decision_day",
+          "delivery_day",
+          "cutoff",
+          "publish_times",
+          "has_history",
+          "kpis",
+          "series",
+          "actuals_halfhourly"
+        ],
+        "title": "Decision",
+        "type": "object"
+      },
+      "DecisionKpis": {
+        "properties": {
+          "actual_mwh": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Actual Mwh"
+          },
+          "corrected_error_mwh": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Corrected Error Mwh"
+          },
+          "corrected_mae": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Corrected Mae"
+          },
+          "corrected_mwh": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Corrected Mwh"
+          },
+          "firm_p10_mwh": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Firm P10 Mwh"
+          },
+          "forecast_mwh": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Forecast Mwh"
+          },
+          "min_forecast_mw": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Min Forecast Mw"
+          },
+          "peak_forecast_mw": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Peak Forecast Mw"
+          },
+          "raw_error_mwh": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Raw Error Mwh"
+          },
+          "raw_mae": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Raw Mae"
+          },
+          "scale": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Scale"
+          }
+        },
+        "required": [
+          "forecast_mwh",
+          "corrected_mwh",
+          "firm_p10_mwh",
+          "actual_mwh",
+          "raw_error_mwh",
+          "corrected_error_mwh",
+          "raw_mae",
+          "corrected_mae",
+          "peak_forecast_mw",
+          "min_forecast_mw",
+          "scale"
+        ],
+        "title": "DecisionKpis",
+        "type": "object"
+      },
+      "DecisionPoint": {
+        "properties": {
+          "actual": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Actual"
+          },
+          "corrected": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Corrected"
+          },
+          "forecast": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Forecast"
+          },
+          "horizon_h": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Horizon H"
+          },
+          "p10": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "P10"
+          },
+          "p90": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "P90"
+          },
+          "time": {
+            "title": "Time",
+            "type": "string"
+          }
+        },
+        "required": [
+          "time",
+          "forecast",
+          "corrected",
+          "p10",
+          "p90",
+          "actual",
+          "horizon_h"
+        ],
+        "title": "DecisionPoint",
+        "type": "object"
+      },
+      "ErrorBody": {
+        "properties": {
+          "code": {
+            "examples": [
+              "validation_error"
+            ],
+            "title": "Code",
+            "type": "string"
+          },
+          "message": {
+            "title": "Message",
+            "type": "string"
+          },
+          "request_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Request Id"
+          }
+        },
+        "required": [
+          "code",
+          "message"
+        ],
+        "title": "ErrorBody",
+        "type": "object"
+      },
+      "ErrorResponse": {
+        "properties": {
+          "error": {
+            "$ref": "#/components/schemas/ErrorBody"
+          }
+        },
+        "required": [
+          "error"
+        ],
+        "title": "ErrorResponse",
+        "type": "object"
+      },
+      "Evolution": {
+        "properties": {
+          "actual": {
+            "items": {
+              "$ref": "#/components/schemas/ActualPoint"
+            },
+            "title": "Actual",
+            "type": "array"
+          },
+          "delivery_day": {
+            "title": "Delivery Day",
+            "type": "string"
+          },
+          "runs": {
+            "items": {
+              "$ref": "#/components/schemas/Run"
+            },
+            "title": "Runs",
+            "type": "array"
+          }
+        },
+        "required": [
+          "delivery_day",
+          "runs",
+          "actual"
+        ],
+        "title": "Evolution",
+        "type": "object"
+      },
+      "Explorer": {
+        "properties": {
+          "actual": {
+            "items": {
+              "$ref": "#/components/schemas/ActualPoint"
+            },
+            "title": "Actual",
+            "type": "array"
+          },
+          "forecast": {
+            "items": {
+              "$ref": "#/components/schemas/ExplorerPoint"
+            },
+            "title": "Forecast",
+            "type": "array"
+          },
+          "horizon_h": {
+            "title": "Horizon H",
+            "type": "number"
+          },
+          "summary": {
+            "$ref": "#/components/schemas/Summary"
+          }
+        },
+        "required": [
+          "horizon_h",
+          "forecast",
+          "actual",
+          "summary"
+        ],
+        "title": "Explorer",
+        "type": "object"
+      },
+      "ExplorerPoint": {
+        "properties": {
+          "forecast": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Forecast"
+          },
+          "horizon_h": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Horizon H"
+          },
+          "publish_time": {
+            "title": "Publish Time",
+            "type": "string"
+          },
+          "time": {
+            "title": "Time",
+            "type": "string"
+          }
+        },
+        "required": [
+          "time",
+          "forecast",
+          "publish_time",
+          "horizon_h"
+        ],
+        "title": "ExplorerPoint",
+        "type": "object"
+      },
+      "Health": {
+        "properties": {
+          "status": {
+            "title": "Status",
+            "type": "string"
+          },
+          "version": {
+            "title": "Version",
+            "type": "string"
+          }
+        },
+        "required": [
+          "status",
+          "version"
+        ],
+        "title": "Health",
+        "type": "object"
+      },
+      "HeatmapCell": {
+        "properties": {
+          "day": {
+            "title": "Day",
+            "type": "string"
+          },
+          "error": {
+            "title": "Error",
+            "type": "number"
+          },
+          "hour": {
+            "title": "Hour",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "day",
+          "hour",
+          "error"
+        ],
+        "title": "HeatmapCell",
+        "type": "object"
+      },
+      "HistogramBin": {
+        "properties": {
+          "bin": {
+            "title": "Bin",
+            "type": "integer"
+          },
+          "count": {
+            "title": "Count",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "bin",
+          "count"
+        ],
+        "title": "HistogramBin",
+        "type": "object"
+      },
+      "HorizonRow": {
+        "properties": {
+          "abs_p90": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Abs P90"
+          },
+          "bias": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Bias"
+          },
+          "horizon_h": {
+            "title": "Horizon H",
+            "type": "integer"
+          },
+          "mae": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Mae"
+          },
+          "max_shortfall": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Max Shortfall"
+          },
+          "max_surplus": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Max Surplus"
+          },
+          "mean_actual": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Mean Actual"
+          },
+          "n": {
+            "title": "N",
+            "type": "integer"
+          },
+          "nmae_pct": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Nmae Pct"
+          },
+          "p10": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "P10"
+          },
+          "p50": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "P50"
+          },
+          "p90": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "P90"
+          },
+          "rmse": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Rmse"
+          },
+          "shortfall_share_pct": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Shortfall Share Pct"
+          }
+        },
+        "required": [
+          "n",
+          "horizon_h"
+        ],
+        "title": "HorizonRow",
+        "type": "object"
+      },
+      "HourRow": {
+        "properties": {
+          "abs_p90": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Abs P90"
+          },
+          "bias": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Bias"
+          },
+          "hour": {
+            "title": "Hour",
+            "type": "integer"
+          },
+          "mae": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Mae"
+          },
+          "max_shortfall": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Max Shortfall"
+          },
+          "max_surplus": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Max Surplus"
+          },
+          "mean_actual": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Mean Actual"
+          },
+          "n": {
+            "title": "N",
+            "type": "integer"
+          },
+          "nmae_pct": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Nmae Pct"
+          },
+          "p10": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "P10"
+          },
+          "p50": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "P50"
+          },
+          "p90": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "P90"
+          },
+          "rmse": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Rmse"
+          },
+          "shortfall_share_pct": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Shortfall Share Pct"
+          }
+        },
+        "required": [
+          "n",
+          "hour"
+        ],
+        "title": "HourRow",
+        "type": "object"
+      },
+      "LevelRow": {
+        "properties": {
+          "abs_p90": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Abs P90"
+          },
+          "bias": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Bias"
+          },
+          "level_mw": {
+            "title": "Level Mw",
+            "type": "integer"
+          },
+          "mae": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Mae"
+          },
+          "max_shortfall": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Max Shortfall"
+          },
+          "max_surplus": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Max Surplus"
+          },
+          "mean_actual": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Mean Actual"
+          },
+          "n": {
+            "title": "N",
+            "type": "integer"
+          },
+          "nmae_pct": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Nmae Pct"
+          },
+          "p10": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "P10"
+          },
+          "p50": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "P50"
+          },
+          "p90": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "P90"
+          },
+          "rmse": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Rmse"
+          },
+          "shortfall_share_pct": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Shortfall Share Pct"
+          }
+        },
+        "required": [
+          "n",
+          "level_mw"
+        ],
+        "title": "LevelRow",
+        "type": "object"
+      },
+      "Meta": {
+        "properties": {
+          "actual_rows": {
+            "title": "Actual Rows",
+            "type": "integer"
+          },
+          "actuals_range": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Actuals Range",
+            "type": "array"
+          },
+          "correction_window_days": {
+            "title": "Correction Window Days",
+            "type": "integer"
+          },
+          "data_version": {
+            "title": "Data Version",
+            "type": "string"
+          },
+          "decision_days": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Decision Days",
+            "type": "array"
+          },
+          "default_cutoff": {
+            "title": "Default Cutoff",
+            "type": "string"
+          },
+          "delivery_window": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Delivery Window",
+            "type": "array"
+          },
+          "forecast_rows": {
+            "title": "Forecast Rows",
+            "type": "integer"
+          },
+          "forecast_runs": {
+            "title": "Forecast Runs",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "decision_days",
+          "default_cutoff",
+          "delivery_window",
+          "forecast_runs",
+          "forecast_rows",
+          "actual_rows",
+          "actuals_range",
+          "correction_window_days",
+          "data_version"
+        ],
+        "title": "Meta",
+        "type": "object"
+      },
+      "Run": {
+        "properties": {
+          "hours": {
+            "title": "Hours",
+            "type": "integer"
+          },
+          "mwh": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Mwh"
+          },
+          "points": {
+            "items": {
+              "$ref": "#/components/schemas/RunPoint"
+            },
+            "title": "Points",
+            "type": "array"
+          },
+          "publish_time": {
+            "title": "Publish Time",
+            "type": "string"
+          }
+        },
+        "required": [
+          "publish_time",
+          "mwh",
+          "hours",
+          "points"
+        ],
+        "title": "Run",
+        "type": "object"
+      },
+      "RunPoint": {
+        "properties": {
+          "forecast": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Forecast"
+          },
+          "time": {
+            "title": "Time",
+            "type": "string"
+          }
+        },
+        "required": [
+          "time",
+          "forecast"
+        ],
+        "title": "RunPoint",
+        "type": "object"
+      },
+      "Significance": {
+        "description": "Day-block bootstrap of the MAE reduction from the adjusted forecast.",
+        "properties": {
+          "ci_high_pct": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Ci High Pct"
+          },
+          "ci_low_pct": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Ci Low Pct"
+          },
+          "days": {
+            "title": "Days",
+            "type": "integer"
+          },
+          "days_better": {
+            "title": "Days Better",
+            "type": "integer"
+          },
+          "improvement_pct": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Improvement Pct"
+          },
+          "n_boot": {
+            "title": "N Boot",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "improvement_pct",
+          "ci_low_pct",
+          "ci_high_pct",
+          "days_better",
+          "days",
+          "n_boot"
+        ],
+        "title": "Significance",
+        "type": "object"
+      },
+      "Summary": {
+        "description": "Error statistics, error = forecast - actual (positive = shortfall).",
+        "properties": {
+          "abs_p90": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Abs P90"
+          },
+          "bias": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Bias"
+          },
+          "mae": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Mae"
+          },
+          "max_shortfall": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Max Shortfall"
+          },
+          "max_surplus": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Max Surplus"
+          },
+          "mean_actual": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Mean Actual"
+          },
+          "n": {
+            "title": "N",
+            "type": "integer"
+          },
+          "nmae_pct": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Nmae Pct"
+          },
+          "p10": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "P10"
+          },
+          "p50": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "P50"
+          },
+          "p90": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "P90"
+          },
+          "rmse": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Rmse"
+          },
+          "shortfall_share_pct": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Shortfall Share Pct"
+          }
+        },
+        "required": [
+          "n"
+        ],
+        "title": "Summary",
+        "type": "object"
+      }
+    }
+  },
+  "info": {
+    "description": "Day-ahead wind forecasts vs outturn for GB, January 2026 (Elexon BMRS data).",
+    "title": "Wind Forecast Monitor API",
+    "version": "1.1.0"
+  },
+  "openapi": "3.1.0",
+  "paths": {
+    "/api/health": {
+      "get": {
+        "operationId": "health_api_health_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Health"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          }
+        },
+        "summary": "Health",
+        "tags": [
+          "ops"
+        ]
+      }
+    },
+    "/api/v1/accuracy": {
+      "get": {
+        "operationId": "accuracy_api_v1_accuracy_get",
+        "parameters": [
+          {
+            "description": "Decision cut-off on D-1, UK time (HH:MM)",
+            "in": "query",
+            "name": "cutoff",
+            "required": false,
+            "schema": {
+              "default": "11:00",
+              "description": "Decision cut-off on D-1, UK time (HH:MM)",
+              "pattern": "^([01]\\d|2[0-3]):[0-5]\\d$",
+              "title": "Cutoff",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Accuracy"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          }
+        },
+        "summary": "Accuracy",
+        "tags": [
+          "accuracy"
+        ]
+      }
+    },
+    "/api/v1/decision": {
+      "get": {
+        "operationId": "decision_api_v1_decision_get",
+        "parameters": [
+          {
+            "description": "Day the purchase decision is made",
+            "in": "query",
+            "name": "decision_date",
+            "required": true,
+            "schema": {
+              "description": "Day the purchase decision is made",
+              "format": "date",
+              "title": "Decision Date",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Decision cut-off on D-1, UK time (HH:MM)",
+            "in": "query",
+            "name": "cutoff",
+            "required": false,
+            "schema": {
+              "default": "11:00",
+              "description": "Decision cut-off on D-1, UK time (HH:MM)",
+              "pattern": "^([01]\\d|2[0-3]):[0-5]\\d$",
+              "title": "Cutoff",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Decision"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          }
+        },
+        "summary": "Decision",
+        "tags": [
+          "decision"
+        ]
+      }
+    },
+    "/api/v1/evolution": {
+      "get": {
+        "operationId": "evolution_api_v1_evolution_get",
+        "parameters": [
+          {
+            "description": "Delivery day",
+            "in": "query",
+            "name": "delivery_date",
+            "required": true,
+            "schema": {
+              "description": "Delivery day",
+              "format": "date",
+              "title": "Delivery Date",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Evolution"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          }
+        },
+        "summary": "Evolution",
+        "tags": [
+          "decision"
+        ]
+      }
+    },
+    "/api/v1/export.csv": {
+      "get": {
+        "operationId": "export_api_v1_export_csv_get",
+        "parameters": [
+          {
+            "description": "Decision cut-off on D-1, UK time (HH:MM)",
+            "in": "query",
+            "name": "cutoff",
+            "required": false,
+            "schema": {
+              "default": "11:00",
+              "description": "Decision cut-off on D-1, UK time (HH:MM)",
+              "pattern": "^([01]\\d|2[0-3]):[0-5]\\d$",
+              "title": "Cutoff",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          }
+        },
+        "summary": "Export",
+        "tags": [
+          "accuracy"
+        ]
+      }
+    },
+    "/api/v1/forecast": {
+      "get": {
+        "operationId": "forecast_api_v1_forecast_get",
+        "parameters": [
+          {
+            "description": "First target day (inclusive)",
+            "in": "query",
+            "name": "start",
+            "required": true,
+            "schema": {
+              "description": "First target day (inclusive)",
+              "format": "date",
+              "title": "Start",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Last target day (inclusive)",
+            "in": "query",
+            "name": "end",
+            "required": true,
+            "schema": {
+              "description": "Last target day (inclusive)",
+              "format": "date",
+              "title": "End",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Minimum hours between publish and target",
+            "in": "query",
+            "name": "horizon_h",
+            "required": false,
+            "schema": {
+              "default": 14.0,
+              "description": "Minimum hours between publish and target",
+              "maximum": 60,
+              "minimum": 0,
+              "title": "Horizon H",
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Explorer"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          }
+        },
+        "summary": "Forecast",
+        "tags": [
+          "accuracy"
+        ]
+      }
+    },
+    "/api/v1/meta": {
+      "get": {
+        "operationId": "meta_api_v1_meta_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Meta"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          }
+        },
+        "summary": "Meta",
+        "tags": [
+          "reference"
+        ]
+      }
+    }
+  }
+}
