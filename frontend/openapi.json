@@ -1527,7 +1527,7 @@
                 }
               }
             },
-            "description": "Unprocessable Content"
+            "description": "Validation error"
           }
         },
         "summary": "Health",
@@ -1573,7 +1573,7 @@
                 }
               }
             },
-            "description": "Unprocessable Content"
+            "description": "Validation error"
           }
         },
         "summary": "Accuracy",
@@ -1631,7 +1631,7 @@
                 }
               }
             },
-            "description": "Unprocessable Content"
+            "description": "Validation error"
           }
         },
         "summary": "Decision",
@@ -1676,7 +1676,7 @@
                 }
               }
             },
-            "description": "Unprocessable Content"
+            "description": "Validation error"
           }
         },
         "summary": "Evolution",
@@ -1722,7 +1722,7 @@
                 }
               }
             },
-            "description": "Unprocessable Content"
+            "description": "Validation error"
           }
         },
         "summary": "Export",
@@ -1793,7 +1793,7 @@
                 }
               }
             },
-            "description": "Unprocessable Content"
+            "description": "Validation error"
           }
         },
         "summary": "Forecast",
@@ -1824,7 +1824,7 @@
                 }
               }
             },
-            "description": "Unprocessable Content"
+            "description": "Validation error"
           }
         },
         "summary": "Meta",

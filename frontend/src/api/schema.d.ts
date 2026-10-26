@@ -524,7 +524,7 @@ export interface operations {
                     "application/json": components["schemas"]["Health"];
                 };
             };
-            /** @description Unprocessable Content */
+            /** @description Validation error */
             422: {
                 headers: {
                     [name: string]: unknown;
@@ -556,7 +556,7 @@ export interface operations {
                     "application/json": components["schemas"]["Accuracy"];
                 };
             };
-            /** @description Unprocessable Content */
+            /** @description Validation error */
             422: {
                 headers: {
                     [name: string]: unknown;
@@ -590,7 +590,7 @@ export interface operations {
                     "application/json": components["schemas"]["Decision"];
                 };
             };
-            /** @description Unprocessable Content */
+            /** @description Validation error */
             422: {
                 headers: {
                     [name: string]: unknown;
@@ -622,7 +622,7 @@ export interface operations {
                     "application/json": components["schemas"]["Evolution"];
                 };
             };
-            /** @description Unprocessable Content */
+            /** @description Validation error */
             422: {
                 headers: {
                     [name: string]: unknown;
@@ -654,7 +654,7 @@ export interface operations {
                     "text/plain": string;
                 };
             };
-            /** @description Unprocessable Content */
+            /** @description Validation error */
             422: {
                 headers: {
                     [name: string]: unknown;
@@ -690,7 +690,7 @@ export interface operations {
                     "application/json": components["schemas"]["Explorer"];
                 };
             };
-            /** @description Unprocessable Content */
+            /** @description Validation error */
             422: {
                 headers: {
                     [name: string]: unknown;
@@ -719,7 +719,7 @@ export interface operations {
                     "application/json": components["schemas"]["Meta"];
                 };
             };
-            /** @description Unprocessable Content */
+            /** @description Validation error */
             422: {
                 headers: {
                     [name: string]: unknown;

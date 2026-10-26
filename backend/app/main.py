@@ -29,7 +29,7 @@ app = FastAPI(
     title="Wind Forecast Monitor API",
     description="Day-ahead wind forecasts vs outturn for GB, January 2026 (Elexon BMRS data).",
     version=VERSION,
-    responses={422: {"model": schemas.ErrorResponse}},
+    responses={422: {"model": schemas.ErrorResponse, "description": "Validation error"}},
 )
 app.add_middleware(GZipMiddleware, minimum_size=1000)
 app.add_middleware(RequestContextMiddleware)
